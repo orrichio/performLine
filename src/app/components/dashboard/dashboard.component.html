@@ -1,0 +1,23 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="50">
+    <mat-card-title>Company Brands</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let brand of brands$ | async; let i = index" class="block">
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex fxLayoutGap="15px">
+            <div fxFlex="2">
+              {{i + 1}}.
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+              <div>
+                {{brand.Name}}
+              </div>
+              <button mat-flat-button color="primary" fxFlex="10" [routerLink]="['brand', brand.Id, brand.Name]"> View</button>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+
+  </mat-card>
+</div>
