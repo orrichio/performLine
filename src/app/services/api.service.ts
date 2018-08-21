@@ -16,7 +16,16 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getBrands(): Observable<any> {
-    return this.http.get(`${this.api}/common/brands/`);
+    // const headers = new Headers();
+    // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    // headers.append('Access-Control-Allow-Methods', 'GET');
+    // headers.append('Access-Control-Allow-Origin', '*');
+
+    const headers = new HttpHeaders()
+    .set("Access-Control-Allow-Headers", "Content-Type")
+    .set('Access-Control-Allow-Methods', 'GET')
+    .set('Access-Control-Allow-Origin', '*')
+    return this.http.get(`${this.api}/common/brands/`, { headers: headers });
   }
   getBrandResults(brandId, limit?, offset?): Observable<any> {
     return this.http.get(`${this.api}/web/pages/?brand=${brandId}&limit=${limit}&offset=${offset}/`);
