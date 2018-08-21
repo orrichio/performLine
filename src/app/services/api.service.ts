@@ -10,13 +10,15 @@ import { Http, Headers, Response } from '@angular/http';
   providedIn: 'root'
 })
 export class ApiService {
+  api = 'https://api.performline.com';
+
   brands: Object[];
   constructor(private http: HttpClient) { }
 
   getBrands(): Observable<any> {
-    return this.http.get(`/api/common/brands/`);
+    return this.http.get(`${this.api}/common/brands/`);
   }
-  getBrandResults(brandId, limit?, offset? ): Observable<any> {
-    return this.http.get(`/api/web/pages/?brand=${brandId}&limit=${limit}&offset=${offset}/`);
+  getBrandResults(brandId, limit?, offset?): Observable<any> {
+    return this.http.get(`${this.api}/web/pages/?brand=${brandId}&limit=${limit}&offset=${offset}/`);
   }
 }
