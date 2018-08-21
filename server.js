@@ -6,23 +6,12 @@ const app = express();
 // Serve only the static files form the dist directory
 app.use(express.static('./dist/performLine'));
 
-app.get('/*', function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://performline.herokuapp.com/');
-    res.header("Access-Control-Allow-Origin", "*");
+app.get('/*', function (req, res, next) {
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    // next();
     res.sendFile(path.join(__dirname, '/dist/performLine/index.html'));
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 // Start the app by listening on the default Heroku port
