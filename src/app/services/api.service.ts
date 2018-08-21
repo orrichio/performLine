@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Http, Headers, Response } from '@angular/http';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   brands: Object[];
-  constructor() {
-    this.brands = [
-      {
-        Id: 11,
-        Name: "A. Foo Industries"
-      },
-      {
-        Id: 12,
-        Name: "BAR, Inc."
-      },
-      {
-        Id: 13,
-        Name: "Baz Media"
-      }
-    ]
-  }
+  constructor(private http: HttpClient) { }
 
   getBrands(): Observable<any> {
-    return of(this.brands);
+    return this.http.get(`/api/common/brands/`);
+  }
+  getBrandResults(brandId, limit?, offset? ): Observable<any> {
+    return this.http.get(`/api/web/pages/?brand=${brandId}&limit=${limit}&offset=${offset}/`);
   }
 }

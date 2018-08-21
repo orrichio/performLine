@@ -9,8 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   brands$: Observable<any>;
-  constructor(private api: ApiService) { 
-    this.brands$ = this.api.getBrands();
+  constructor(private api: ApiService) {
+    this.api.getBrands().subscribe(
+      brands => {
+        this.brands$ = brands.Results;
+      }
+    )
   }
 
   ngOnInit() {

@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: '8a26bba7614feb3987ddfec7c62d31755ae5d7c47',
+  url: 'https://api.performline.com'
 };
 
 /*

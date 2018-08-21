@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <mat-card fxFlex="50">
+  <mat-card fxFlex="50" fxFlex.md="75" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card-title>Company Brands</mat-card-title>
     <mat-card-content>
-      <mat-list>
-        <mat-list-item *ngFor="let brand of brands$ | async; let i = index" class="block">
+      <mat-list class="block">
+        <mat-list-item *ngFor="let brand of brands$; let i = index" class="block">
           <div fxLayout="row" fxLayoutAlign="start center" fxFlex fxLayoutGap="15px">
             <div fxFlex="2">
               {{i + 1}}.
@@ -18,6 +18,5 @@
         </mat-list-item>
       </mat-list>
     </mat-card-content>
-
   </mat-card>
 </div>

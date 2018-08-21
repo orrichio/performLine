@@ -7,6 +7,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { BrandListComponent } from './components/brand-list/brand-list.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../app/interceptors/token.interceptor';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, data: { state: 'dashboard' } },
@@ -22,11 +25,18 @@ const appRoutes: Routes = [
     BrowserModule,
     SharedModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
-  providers: [ApiService],
+  providers: [ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
